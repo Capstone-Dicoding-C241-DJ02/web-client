@@ -20,6 +20,9 @@ export default {
         heading2: '1.5rem',
         body: '1rem',
       },
+      boxShadow: {
+        primary: '2px 3px 20px -5px #2e3f5049',
+      },
     },
   },
   plugins: [],
