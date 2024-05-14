@@ -15,6 +15,11 @@ export default {
         success: '#37ED68',
         'primary-blue': '#2E3F50',
       },
+      fontSize: {
+        heading1: '2rem',
+        heading2: '1.5rem',
+        body: '1rem',
+      },
     },
   },
   plugins: [],
