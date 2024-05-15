@@ -1,5 +1,16 @@
-function App() {
-  return <></>;
-}
+import SideBar from "./components/SideBar/SideBar.jsx";
+import CvButtons from "./components/CvButtons/CvButtons";
+const App = () => {
+  return (
+    <div className="App">
+      <SideBar />
+      <div id="main-Content" className="ml-0 md:ml-64 p-4">
+        <h1 className="text-3xl">Main Content</h1>
+        <p>Konten utama. coba responsiv</p>
+        <CvButtons />
+      </div>
+    </div>
+  );
+};
 
 export default App;
