@@ -1,6 +1,8 @@
 import { useState } from "react";
+import ButtonOriCv from "./ButtonOriCV";
+import ButtonSumCv from "./ButtonSumCV";
 
-const ButtonComponent = () => {
+const CvButtons = () => {
   const [activeButton, setActiveButton] = useState(null);
 
   const handleClick = (button) => {
@@ -9,28 +11,16 @@ const ButtonComponent = () => {
 
   return (
     <div className="flex space-x-4">
-      <button
-        className={`px-4 py-2 rounded-md shadow-primary ${
-          activeButton === "coverLetter"
-            ? "bg-primary-blue text-white"
-            : "bg-white text-black"
-        }`}
+      <ButtonOriCv
+        isActive={activeButton === "coverLetter"}
         onClick={() => handleClick("coverLetter")}
-      >
-        Cover Letter & CV
-      </button>
-      <button
-        className={`px-4 py-2 rounded-md shadow-primary ${
-          activeButton === "summarizedCV"
-            ? "bg-primary-blue text-white"
-            : "bg-white text-black"
-        }`}
+      />
+      <ButtonSumCv
+        isActive={activeButton === "summarizedCV"}
         onClick={() => handleClick("summarizedCV")}
-      >
-        Summarized CV
-      </button>
+      />
     </div>
   );
 };
 
-export default ButtonComponent;
+export default CvButtons;
