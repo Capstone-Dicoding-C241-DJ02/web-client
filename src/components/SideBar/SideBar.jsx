@@ -20,7 +20,7 @@ const SideBar = () => {
     }
   };
 
-  // Update isMobile state on resize
+  // JIka width < 768 setIsMobile jadi true
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -41,10 +41,14 @@ const SideBar = () => {
       >
         <div className="relative z-40">
           <img src={jobsImage} alt="Jobs" className="w-full h-auto mb-4" />
-          {/* Sidebar content goes here */}
+          {/* Sidebar content dibawahsini*/}
           <ul>
-            <li className="ml-8 mt-10">
-              <a href="#main-Content" onClick={handleLinkClick}>
+            <li className="ml-3 mt-10 ">
+              <a
+                href="#main-Content"
+                className="text-heading2 "
+                onClick={handleLinkClick}
+              >
                 Lowongan Anda
               </a>
             </li>
@@ -52,7 +56,7 @@ const SideBar = () => {
         </div>
       </div>
 
-      {/* Button to toggle sidebar */}
+      {/* tombol sidebar chevron */}
       <button
         className={`md:hidden w-12 h-24 fixed top-1/2 transform -translate-y-1/2 z-50 bg-white text-black ${
           isOpen ? "shadow-none" : "shadow-primary1"
@@ -66,7 +70,7 @@ const SideBar = () => {
         </span>
       </button>
 
-      {/* Click outside the sidebar to close */}
+      {/* Click diluar sidebar = close sidebar */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50 z-30 md:hidden"
