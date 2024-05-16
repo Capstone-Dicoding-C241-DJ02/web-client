@@ -7,7 +7,6 @@ const App = () => {
       <SideBar />
       <div id="main-Content" className="ml-0 md:ml-64 p-4">
         <h1 className="text-3xl">Main Content</h1>
-        <p>Konten utama. coba responsiv</p>
         <CompanyLogo />
         <CvButtons />
       </div>

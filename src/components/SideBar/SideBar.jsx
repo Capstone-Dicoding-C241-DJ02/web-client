@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import jobsImage from "../../assets/jobs.png";
-import Chevron from "../chevron/chevron";
+import Chevron from "../../icons/IconChevron";
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
