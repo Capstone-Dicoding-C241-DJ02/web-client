@@ -21,7 +21,7 @@ export default {
         body: '1rem',
       },
       boxShadow: {
-        primary: '2px 3px 20px -5px #2e3f5049',
+        primary: '2px 3px 20px -5px #2e3f5030',
       },
     },
   },
