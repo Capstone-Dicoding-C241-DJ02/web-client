@@ -8,7 +8,7 @@ const ButtonOriCV = ({ isActive, onClick }) => {
       }`}
       onClick={onClick}
     >
-      Cover Letter & CV
+      Original CV
     </button>
   );
 };
