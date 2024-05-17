@@ -5,7 +5,7 @@ import Types from 'prop-types';
 
 const CandidateHeader = ({img, name, position, yearExperience, percentage}) => {
   return (
-    <div className="shadow-primary w-[258px] md:w-[625px] rounded flex items-center justify-between p-4">
+    <div className="shadow-primary w-full h-[134px] rounded flex items-center justify-between p-4 bg-white">
       <CandidateHeaderProfile
         img={img}
         name={name}
