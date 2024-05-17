@@ -11,7 +11,7 @@ const CandidateCardNumber = ({number}) => {
   return (
     <div
       className={clsx(
-        'h-full w-[59px] bg-gold rounded grid place-content-center',
+        'h-full w-[59px] rounded grid place-content-center',
         options
       )}
     >
@@ -23,7 +23,7 @@ const CandidateCardNumber = ({number}) => {
 };
 
 CandidateCardNumber.propTypes = {
-  number: Types.number,
+  number: Types.number.isRequired,
 };
 
 export default CandidateCardNumber;

@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import Types from 'prop-types';
 
-const CandidateCardProfile = ({img, isActive}) => {
+const CandidateCardProfile = ({img, isActive, name, position}) => {
   return (
     <div className="flex gap-3 items-center">
       <div className="rounded-full overflow-clip w-[60px]">
-        <img src={img} alt="candidate-photo" className="w-full" />
+        <img src={img} alt="candidate-photo" className="w-full object-cover" />
       </div>
       <div>
         <h2
@@ -14,7 +14,7 @@ const CandidateCardProfile = ({img, isActive}) => {
             'text-black': !isActive,
           })}
         >
-          Kim Chaewon
+          {name}
         </h2>
         <span
           className={clsx('text-sm', {
@@ -22,7 +22,7 @@ const CandidateCardProfile = ({img, isActive}) => {
             'text-black': !isActive,
           })}
         >
-          Cloud Engineer
+          {position}
         </span>
       </div>
     </div>
@@ -31,7 +31,9 @@ const CandidateCardProfile = ({img, isActive}) => {
 
 CandidateCardProfile.propTypes = {
   isActive: Types.bool,
-  img: Types.string,
+  img: Types.string.isRequired,
+  name: Types.string.isRequired,
+  position: Types.string.isRequired,
 };
 
 export default CandidateCardProfile;

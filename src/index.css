@@ -8,6 +8,10 @@
 }
 
 @layer base {
+  body {
+    @apply bg-slate-200;
+  }
+
   h1,
   h2,
   h3,

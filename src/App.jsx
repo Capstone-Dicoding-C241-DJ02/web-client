@@ -1,17 +1,22 @@
-import SideBar from "./components/SideBar/SideBar.jsx";
-import CvButtons from "./components/CvButtons/CvButtons";
-import CompanyLogo from "./components/CompanyHeader/CompanyLogo.jsx";
-const App = () => {
+import Leaderboard from './components/Leaderboard';
+import CandidateCard from './components/CandidateCard';
+import chaewon from './assets/chaewon.jpeg';
+
+function App() {
   return (
-    <div className="App">
-      <SideBar />
-      <div id="main-Content" className="ml-0 md:ml-64 p-4">
-        <h1 className="text-3xl">Main Content</h1>
-        <CompanyLogo />
-        <CvButtons />
-      </div>
+    <div className="grid place-content-center h-screen">
+      <Leaderboard>
+        <CandidateCard img={chaewon} number={1} isActive={true} />
+        <CandidateCard img={chaewon} number={2} />
+        <CandidateCard img={chaewon} number={3} />
+        <CandidateCard img={chaewon} number={4} />
+        <CandidateCard img={chaewon} number={5} />
+        <CandidateCard img={chaewon} number={6} />
+        <CandidateCard img={chaewon} number={7} />
+      </Leaderboard>
     </div>
   );
-};
+}
+
 
 export default App;
