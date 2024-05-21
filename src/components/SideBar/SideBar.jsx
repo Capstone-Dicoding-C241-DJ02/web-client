@@ -45,7 +45,7 @@ const SideBar = () => {
           <img src={jobsImage} alt="Jobs" className="w-full h-auto mb-4" />
           {/* Sidebar content dibawahsini*/}
           <ul>
-            <li className="ml-6 mt-10 ">
+            <li className="md:ml-6 sm:ml-8 ml-8 mt-10 ">
               <a
                 href="#main-Content"
                 className="md:text-body text-body leading-5"
