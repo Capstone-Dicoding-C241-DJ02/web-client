@@ -48,7 +48,7 @@ const SideBar = () => {
             <li className="ml-6 mt-10 ">
               <a
                 href="#main-Content"
-                className="md:text-body text-body"
+                className="md:text-body text-body leading-5"
                 onClick={handleLinkClick}
               >
                 Lowongan Anda

@@ -3,7 +3,7 @@ import ButtonOriCv from "./ButtonOriCV";
 import ButtonSumCv from "./ButtonSumCV";
 
 const CvButtons = () => {
-  const [activeButton, setActiveButton] = useState("summarized");
+  const [activeButton, setActiveButton] = useState("summarizedCV");
 
   const handleClick = (button) => {
     setActiveButton(button);
