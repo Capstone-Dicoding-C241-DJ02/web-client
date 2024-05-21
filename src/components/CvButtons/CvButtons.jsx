@@ -11,13 +11,13 @@ const CvButtons = () => {
 
   return (
     <div className="flex gap-4 justify-between md:justify-center">
-      <ButtonOriCv
-        isActive={activeButton === "coverLetter"}
-        onClick={() => handleClick("coverLetter")}
-      />
       <ButtonSumCv
         isActive={activeButton === "summarizedCV"}
         onClick={() => handleClick("summarizedCV")}
+      />
+      <ButtonOriCv
+        isActive={activeButton === "coverLetter"}
+        onClick={() => handleClick("coverLetter")}
       />
     </div>
   );
