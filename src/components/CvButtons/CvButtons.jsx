@@ -1,9 +1,9 @@
-import {useState} from 'react';
-import ButtonOriCv from './ButtonOriCV';
-import ButtonSumCv from './ButtonSumCV';
+import { useState } from "react";
+import ButtonOriCv from "./ButtonOriCV";
+import ButtonSumCv from "./ButtonSumCV";
 
 const CvButtons = () => {
-  const [activeButton, setActiveButton] = useState(null);
+  const [activeButton, setActiveButton] = useState("summarizedCV");
 
   const handleClick = (button) => {
     setActiveButton(button);
@@ -11,13 +11,13 @@ const CvButtons = () => {
 
   return (
     <div className="flex gap-4 justify-between md:justify-center">
-      <ButtonOriCv
-        isActive={activeButton === 'coverLetter'}
-        onClick={() => handleClick('coverLetter')}
-      />
       <ButtonSumCv
-        isActive={activeButton === 'summarizedCV'}
-        onClick={() => handleClick('summarizedCV')}
+        isActive={activeButton === "summarizedCV"}
+        onClick={() => handleClick("summarizedCV")}
+      />
+      <ButtonOriCv
+        isActive={activeButton === "coverLetter"}
+        onClick={() => handleClick("coverLetter")}
       />
     </div>
   );
