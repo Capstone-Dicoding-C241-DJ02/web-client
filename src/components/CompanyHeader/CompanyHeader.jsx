@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const CompanyHeader = ({imageUrl, jobTitle, salary, category}) => {
   return (
-    <div className="flex items-center p-4 bg-white shadow-primary rounded-lg w-full max-w-full px-4">
+    <div className="flex items-center p-4 bg-white shadow-primary rounded w-full max-w-full px-4">
       <div className="flex-shrink-0">
         <img
           src={imageUrl}
@@ -12,8 +12,8 @@ const CompanyHeader = ({imageUrl, jobTitle, salary, category}) => {
       </div>
       <div className="ml-4">
         <h2 className="text-heading2 font-medium">{jobTitle}</h2>
-        <p className="text-black">Gaji Rp. {salary}</p>
-        <p className="text-black">{category}</p>
+        <p className="text-black text-[.8rem]">Gaji Rp. {salary}</p>
+        <p className="text-black text-[.8rem]">{category}</p>
       </div>
     </div>
   );

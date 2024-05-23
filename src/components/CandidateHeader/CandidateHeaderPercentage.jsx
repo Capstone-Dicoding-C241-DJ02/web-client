@@ -11,7 +11,7 @@ const CandidateHeaderPercentage = ({percentage}) => {
   return (
     <div
       className={clsx(
-        'rounded-full grid place-content-center w-[37px] h-[21px] md:w-[90px] md:h-[50px]',
+        'rounded-full grid place-content-center w-[70px] h-[40px] md:w-[90px] md:h-[50px]',
         options
       )}
     >

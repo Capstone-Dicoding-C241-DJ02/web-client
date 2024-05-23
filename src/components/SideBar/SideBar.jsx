@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
-import jobsImage from "../../assets/jobs.png";
-import Chevron from "../../icons/IconChevron";
+import {useState, useEffect} from 'react';
+import jobsImage from '../../assets/jobs.png';
+import Chevron from '../../icons/IconChevron';
+import clsx from 'clsx';
+import {Link} from 'react-router-dom';
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,33 +28,32 @@ const SideBar = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
     <div>
       {/* Sidebar */}
       <div
-        className={`${
-          isMobile ? "fixed top-0 left-0" : ""
-        } bg-white text-black p-4 shadow-lg transition-transform duration-300 ease-in-out transform ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 w-64 md:w-[210px] h-full z-40`}
-        style={{ height: isOpen ? "100%" : "830px" }}
+        className={clsx(
+          'bg-white text-black p-4 shadow-lg transition-transform duration-300 ease-in-out transform md:translate-x-0 w-64 md:w-[210px] md:max-h-[670px] z-40',
+          {
+            'fixed top-0 left-0': isMobile,
+            'translate-x-0': isOpen,
+            '-translate-x-full': !isOpen,
+          }
+        )}
+        style={{height: isOpen ? '100%' : '830px'}}
       >
         <div className="relative z-40">
           <img src={jobsImage} alt="Jobs" className="w-full h-auto mb-4" />
           {/* Sidebar content dibawahsini*/}
-          <ul>
-            <li className="md:ml-6 sm:ml-8 ml-8 mt-10 ">
-              <a
-                href="#main-Content"
-                className="md:text-body text-body leading-5"
-                onClick={handleLinkClick}
-              >
+          <ul className="text-center">
+            <li>
+              <Link to={'/jobs'} onClick={handleLinkClick}>
                 Lowongan Anda
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -61,14 +62,14 @@ const SideBar = () => {
       {/* tombol sidebar chevron */}
       <button
         className={`md:hidden w-12 h-24 fixed top-1/2 transform -translate-y-1/2 z-50 bg-white text-black ${
-          isOpen ? "shadow-none" : "shadow-primary1"
+          isOpen ? 'shadow-none' : 'shadow-primary1'
         } rounded-r-lg transition-all duration-300 ease-in-out ${
-          isOpen ? "left-64" : "left-0"
+          isOpen ? 'left-64' : 'left-0'
         }`}
         onClick={toggleSidebar}
       >
         <span className="transform w-full h-full flex items-center justify-center">
-          <Chevron direction={isOpen ? "left" : "right"} />
+          <Chevron direction={isOpen ? 'left' : 'right'} />
         </span>
       </button>
 

@@ -11,8 +11,8 @@ export default {
         gold: '#FAC337',
         silver: '#BCBCBC',
         bronze: '#B77539',
-        danger: '#ED5837',
-        success: '#61E041',
+        danger: '#C64225',
+        success: '#2D8417',
         'primary-blue': '#2E3F50',
       },
       fontSize: {
