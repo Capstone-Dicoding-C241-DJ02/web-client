@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CompanyHeader from "./CompanyListHeader";
 import companyLogo from "../../assets/logo-company.png";
 
@@ -46,12 +47,14 @@ const JobList = () => {
       <h1 className="text-2xl mb-4">Daftar Lowongan</h1>
       {jobList.map((job) => (
         <div key={job.id} className="mb-4">
-          <CompanyHeader
-            imageUrl={job.imageUrl}
-            jobTitle={job.jobTitle}
-            salary={job.salary}
-            category={job.category}
-          />
+          <Link to={`/jobs/${job.id}`}>
+            <CompanyHeader
+              imageUrl={job.imageUrl}
+              jobTitle={job.jobTitle}
+              salary={job.salary}
+              category={job.category}
+            />
+          </Link>
         </div>
       ))}
     </div>
