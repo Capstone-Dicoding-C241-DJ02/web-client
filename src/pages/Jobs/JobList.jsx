@@ -42,7 +42,7 @@ const jobList = [
 
 const JobList = () => {
   return (
-    <div className="p-4">
+    <div className="p-4 pr-7">
       <h1 className="text-2xl mb-4">Daftar Lowongan</h1>
       {jobList.map((job) => (
         <div key={job.id} className="mb-4">
