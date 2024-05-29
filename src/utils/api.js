@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = 'BASE_URL'; //e.g http://localhost:8000
 
-const api = (params) =>
+const api = (params={}) =>
   axios.create({
     params,
     baseURL: BASE_URL,
