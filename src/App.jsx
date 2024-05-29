@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import SideBar from './components/SideBar/SideBar';
-import {lazy, Suspense} from 'react';
+import {lazy} from 'react';
 
 const CandidateList = lazy(() => import('./pages/CandidateList'));
 const Jobs = lazy(() => import('./pages/Jobs/JobList'));
