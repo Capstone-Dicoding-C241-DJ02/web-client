@@ -13,7 +13,7 @@ const CompanyHeader = ({imageUrl, jobTitle, salary, category}) => {
       <div className="ml-4">
         <h2 className="text-heading2 font-medium">{jobTitle}</h2>
         <p className="text-black text-[.8rem]">Gaji Rp. {salary}</p>
-        <p className="text-black text-[.8rem]">{category}</p>
+        <p className="text-black text-[.8rem]">Sektor Bisnis: {category}</p>
       </div>
     </div>
   );

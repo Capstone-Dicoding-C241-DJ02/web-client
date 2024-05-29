@@ -11,7 +11,7 @@ const CandidateCardNumber = ({number}) => {
   return (
     <div
       className={clsx(
-        'h-full w-[59px] rounded grid place-content-center',
+        'h-full w-[40px] rounded grid place-content-center',
         options
       )}
     >
