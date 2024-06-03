@@ -1,7 +1,7 @@
-import Types from 'prop-types';
-import LeaderboardHeader from './LeaderboardHeader';
+import Types from "prop-types";
+import LeaderboardHeader from "./LeaderboardHeader";
 
-const Leaderboard = ({children}) => {
+const Leaderboard = ({ children }) => {
   return (
     <div className="shadow-primary md:min-w-[324px] md:h-[550px] rounded bg-white overflow-y-auto md:overflow-clip">
       <LeaderboardHeader />
