@@ -37,7 +37,7 @@ const SideBar = () => {
       {/* Sidebar */}
       <div
         className={clsx(
-          "bg-white text-black p-4 shadow-lg transition-transform duration-300 ease-in-out transform md:translate-x-0 w-64 md:w-[210px] md:max-h-[670px] z-40",
+          "bg-white text-black p-4 shadow-lg transition-transform duration-300 ease-in-out transform md:translate-x-0 w-64 md:w-[210px] md:max-h-[675px] z-40",
           {
             "fixed top-0 left-0": isMobile,
             "translate-x-0": isOpen,
