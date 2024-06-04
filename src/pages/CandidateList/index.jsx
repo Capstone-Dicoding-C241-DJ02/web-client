@@ -25,10 +25,14 @@ const CandidateList = () => {
         setJob(jobResponse.data);
 
         const candidatesResponse = await getCandidatesByJobId(jobId);
-        setCandidates(candidatesResponse.data);
+        const sortedCandidates = candidatesResponse.data.sort(
+          (a, b) => b.match_percentage - a.match_percentage
+        );
+
+        setCandidates(sortedCandidates);
         // Set the first candidate as active by default
-        if (candidatesResponse.data.length > 0) {
-          setActiveCandidateId(candidatesResponse.data[0].id);
+        if (sortedCandidates.length > 0) {
+          setActiveCandidateId(sortedCandidates[0].id);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -55,11 +59,6 @@ const CandidateList = () => {
     (candidate) => candidate.id === activeCandidateId
   );
 
-  // Sort candidates based on match_percentage in descending order
-  const sortedCandidates = [...candidates].sort(
-    (a, b) => b.match_percentage - a.match_percentage
-  );
-
   return (
     <div className="flex flex-col w-full gap-3 overflow-y-clip">
       <CompanyHeader
@@ -71,8 +70,8 @@ const CandidateList = () => {
       <div className="flex flex-col md:flex-row gap-3 h-full">
         <Leaderboard>
           <div className="md:h-[485px] md:overflow-y-auto space-y-2">
-            {sortedCandidates.length > 0 ? (
-              sortedCandidates.map((candidate, index) => (
+            {candidates.length > 0 ? (
+              candidates.map((candidate, index) => (
                 <CandidateCard
                   key={candidate.id}
                   img={logo}
@@ -102,7 +101,7 @@ const CandidateList = () => {
                 name={activeCandidate.fullname}
                 percentage={activeCandidate.match_percentage} // Assuming you have this data or can calculate it
                 position={activeCandidate.title}
-                yearExperience={activeCandidate.yearExperience} // Assuming this data is available
+                yearExperience={activeCandidate.yearExperience || 0} // Assuming this data is available
               />
 
               <CvButtons onChangeTab={handleChangeTab} />
