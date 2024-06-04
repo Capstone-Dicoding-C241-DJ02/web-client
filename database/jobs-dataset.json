@@ -1216,7 +1216,7 @@
     },
     {
       "id": 5,
-      "fullname": "Jane Smith",
+      "fullname": "Jane Smithzz",
       "title": "Junior Developer",
       "jobId": 1,
       "email": "jane.smith@example.com",
@@ -1225,11 +1225,11 @@
       "passphoto": "http://example.com/passphoto.jpg",
       "original_cv_url": "http://example.com/cv.pdf",
       "cv_summary": "Junior developer with strong skills in JavaScript.",
-      "match_percentage": 75
+      "match_percentage": 20
     },
     {
       "id": 6,
-      "fullname": "Jane Smith",
+      "fullname": "Jane Smithqq",
       "title": "Junior Developer",
       "jobId": 1,
       "email": "jane.smith@example.com",
@@ -1238,10 +1238,36 @@
       "passphoto": "http://example.com/passphoto.jpg",
       "original_cv_url": "http://example.com/cv.pdf",
       "cv_summary": "Junior developer with strong skills in JavaScript.",
-      "match_percentage": 75
+      "match_percentage": 30
     },
     {
       "id": 7,
+      "fullname": "Jane Smithss",
+      "title": "Junior Developer",
+      "jobId": 1,
+      "email": "jane.smith@example.com",
+      "phone": "123-456-7891",
+      "additional_link": "http://linkedin.com/janesmith",
+      "passphoto": "http://example.com/passphoto.jpg",
+      "original_cv_url": "http://example.com/cv.pdf",
+      "cv_summary": "Junior developer with strong skills in JavaScript.",
+      "match_percentage": 90
+    },
+    {
+      "id": 8,
+      "fullname": "Jane Smithaa",
+      "title": "Junior Developer",
+      "jobId": 1,
+      "email": "jane.smith@example.com",
+      "phone": "123-456-7891",
+      "additional_link": "http://linkedin.com/janesmith",
+      "passphoto": "http://example.com/passphoto.jpg",
+      "original_cv_url": "http://example.com/cv.pdf",
+      "cv_summary": "Junior developer with strong skills in JavaScript.",
+      "match_percentage": 95
+    },
+    {
+      "id": 9,
       "fullname": "Alice Johnson",
       "title": "Product Manager",
       "jobId": 2,

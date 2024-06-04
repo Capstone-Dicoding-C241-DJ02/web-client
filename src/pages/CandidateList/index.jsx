@@ -7,6 +7,7 @@ import CandidateHeader from "../../components/CandidateHeader";
 import CvButtons from "../../components/CvButtons/CvButtons";
 import CandidateCard from "../../components/CandidateCard";
 import Tabs from "../../components/Tabs";
+import CandidateMissing from "../../icons/IconMissingCandidate.jsx";
 import cvAts from "../../assets/CV-ATS.pdf";
 import { getJobById, getCandidatesByJobId } from "../../utils/api.js";
 
@@ -43,13 +44,21 @@ const CandidateList = () => {
 
   const handleCardClick = (candidateId) => {
     console.log(`Candidate ${candidateId} clicked`);
-
     setActiveCandidateId(candidateId);
   };
 
   if (!job) {
     return <div>Loading...</div>;
   }
+
+  const activeCandidate = candidates.find(
+    (candidate) => candidate.id === activeCandidateId
+  );
+
+  // Sort candidates based on match_percentage in descending order
+  const sortedCandidates = [...candidates].sort(
+    (a, b) => b.match_percentage - a.match_percentage
+  );
 
   return (
     <div className="flex flex-col w-full gap-3 overflow-y-clip">
@@ -62,8 +71,8 @@ const CandidateList = () => {
       <div className="flex flex-col md:flex-row gap-3 h-full">
         <Leaderboard>
           <div className="md:h-[485px] md:overflow-y-auto space-y-2">
-            {candidates.length > 0 ? (
-              candidates.map((candidate, index) => (
+            {sortedCandidates.length > 0 ? (
+              sortedCandidates.map((candidate, index) => (
                 <CandidateCard
                   key={candidate.id}
                   img={logo}
@@ -81,18 +90,31 @@ const CandidateList = () => {
             )}
           </div>
         </Leaderboard>
-        <div className="space-y-3 w-full overflow-y-scroll max-h-[600px]">
-          <CandidateHeader
-            img={logo}
-            name="Silo"
-            percentage={90}
-            position="ML Engineer"
-            yearExperience={2}
-          />
+        <div
+          className={`space-y-3 w-full ${
+            activeCandidate ? "overflow-y-scroll max-h-[600px]" : ""
+          }`}
+        >
+          {activeCandidate ? (
+            <>
+              <CandidateHeader
+                img={logo}
+                name={activeCandidate.fullname}
+                percentage={activeCandidate.match_percentage} // Assuming you have this data or can calculate it
+                position={activeCandidate.title}
+                yearExperience={activeCandidate.yearExperience} // Assuming this data is available
+              />
 
-          <CvButtons onChangeTab={handleChangeTab} />
+              <CvButtons onChangeTab={handleChangeTab} />
 
-          <Tabs tab={activeTab} originalCv={cvAts} />
+              <Tabs tab={activeTab} originalCv={cvAts} />
+            </>
+          ) : (
+            <div className="flex flex-col justify-center items-center text-center text-gray-500 bg-white shadow h-[550px]">
+              <CandidateMissing />
+              <p>Belum ada kandidat yang dipilih</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

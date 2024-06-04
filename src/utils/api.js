@@ -15,5 +15,6 @@ export const getJobs = () => api().get("/jobs");
 export const getJobById = (id) => api().get(`/jobs/${id}`);
 export const getCandidatesByJobId = (jobId) =>
   api().get(`/candidates`, { params: { jobId } });
+// export const getCandidatesByJobId = (jobId) => api().get(`/jobs/${jobId}/leaderboard`);
 
 export default api;
