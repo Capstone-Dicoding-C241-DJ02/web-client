@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types"; // Import PropTypes
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import jobsImage from "../../assets/jobs.png";
 import Chevron from "../../icons/IconChevron";
 import clsx from "clsx";
-import { Link } from "react-router-dom";
 
-const SideBar = () => {
+const SideBar = ({ setIsLoggedIn }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -22,7 +24,12 @@ const SideBar = () => {
     }
   };
 
-  // JIka width < 768 setIsMobile jadi true
+  const handleLogout = () => {
+    setIsLoggedIn(false); // Set isLoggedIn to false
+    navigate("/login"); // Redirect to login page
+  };
+
+  // Update isMobile state on window resize
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -46,20 +53,28 @@ const SideBar = () => {
         )}
         style={{ height: isOpen ? "100%" : "830px" }}
       >
-        <div className="relative z-40">
-          <img src={jobsImage} alt="Jobs" className="w-full h-auto mb-4" />
-          {/* Sidebar content dibawahsini*/}
-          <ul className="text-center">
-            <li>
-              <Link to={"jobs"} onClick={handleLinkClick}>
-                Lowongan Anda
-              </Link>
-            </li>
-          </ul>
+        <div className="relative z-40 flex flex-col justify-between h-full">
+          <div>
+            <img src={jobsImage} alt="Jobs" className="w-full h-auto mb-4" />
+            {/* Sidebar content */}
+            <ul className="text-center">
+              <li>
+                <Link to="/jobs" onClick={handleLinkClick}>
+                  Lowongan Anda
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="bg-red-500 text-white p-2 rounded mt-4"
+          >
+            Logout
+          </button>
         </div>
       </div>
 
-      {/* tombol sidebar chevron */}
+      {/* Sidebar toggle button */}
       <button
         className={`md:hidden w-12 h-24 fixed top-1/2 transform -translate-y-1/2 z-50 bg-white text-black ${
           isOpen ? "shadow-none" : "shadow-primary1"
@@ -73,7 +88,7 @@ const SideBar = () => {
         </span>
       </button>
 
-      {/* Click diluar sidebar = close sidebar */}
+      {/* Click outside sidebar to close */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50 z-30 md:hidden"
@@ -82,6 +97,10 @@ const SideBar = () => {
       )}
     </div>
   );
+};
+
+SideBar.propTypes = {
+  setIsLoggedIn: PropTypes.func.isRequired,
 };
 
 export default SideBar;

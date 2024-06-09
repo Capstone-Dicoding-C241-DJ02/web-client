@@ -1,6 +1,6 @@
-import Types from 'prop-types';
+import Types from "prop-types";
 
-const CandidateHeaderProfile = ({img, name, position, yearExperience}) => {
+const CandidateHeaderProfile = ({ img, name, position }) => {
   return (
     <div className="flex items-center gap-4">
       <div className="rounded-full overflow-clip w-[48px] h-[48px] md:w-[80px] md:h-[80px]">
@@ -12,9 +12,6 @@ const CandidateHeaderProfile = ({img, name, position, yearExperience}) => {
           <span className="text-black text-[.5rem] md:text-[.8rem]">
             {position}
           </span>
-          <span className="text-gray-500 text-[.5rem] md:text-[.8rem]">
-            {yearExperience} tahun pengalaman
-          </span>
         </div>
       </div>
     </div>
@@ -25,7 +22,6 @@ CandidateHeaderProfile.propTypes = {
   img: Types.string.isRequired,
   name: Types.string.isRequired,
   position: Types.string.isRequired,
-  yearExperience: Types.number.isRequired,
 };
 
 export default CandidateHeaderProfile;

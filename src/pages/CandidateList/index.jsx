@@ -64,7 +64,7 @@ const CandidateList = () => {
       <CompanyHeader
         imageUrl={job.Logo}
         jobTitle={job.title}
-        salary="Rp. 20.000.000"
+        city={job.city}
         category={job.business_sector}
       />
       <div className="flex flex-col md:flex-row gap-3 h-full">
@@ -101,7 +101,6 @@ const CandidateList = () => {
                 name={activeCandidate.fullname}
                 percentage={activeCandidate.match_percentage} // Assuming you have this data or can calculate it
                 position={activeCandidate.title}
-                yearExperience={activeCandidate.yearExperience || 0} // Assuming this data is available
               />
 
               <CvButtons onChangeTab={handleChangeTab} />

@@ -7,7 +7,7 @@ const CompanyLogo = () => {
       <CompanyHeader
         imageUrl={companyLogo}
         jobTitle="ML Engineer"
-        salary="1.000 - 100.000"
+        city="1.000 - 100.000"
         category="Finance"
       />
     </div>
