@@ -1,8 +1,10 @@
+// RecruiterLogin.jsx
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import InputText from "../../components/InputText/InputText"; // Pastikan path benar
-import logo from "../../assets/jobs.png"; // Pastikan path benar
+import InputText from "../../components/InputText/InputText"; // Ensure path is correct
+import logo from "../../assets/jobs.png"; // Ensure path is correct
+import { login } from "../../utils/api.js"; // Import the login function
 
 const RecruiterLogin = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState("");
@@ -10,14 +12,16 @@ const RecruiterLogin = ({ setIsLoggedIn }) => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Verifikasi email dan password
-    if (email === "admin@example.com" && password === "admin") {
-      setIsLoggedIn(true); // Mengubah status login menjadi true
-      navigate("/jobs"); // Mengarahkan ke halaman jobs
-    } else {
-      setError("Email atau password salah");
+    try {
+      const response = await login(email, password);
+      const { accessToken } = response.data.data;
+      localStorage.setItem("accessToken", accessToken);
+      setIsLoggedIn(true);
+      navigate("/jobs");
+    } catch (error) {
+      setError("Email or password is incorrect");
     }
   };
 
