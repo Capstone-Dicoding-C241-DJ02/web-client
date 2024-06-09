@@ -1,7 +1,7 @@
 import { useState } from "react";
 import InputText from "../../components/InputText/InputText";
 import { Editor } from "react-simple-wysiwyg";
-import IconUploadImgPerus from "../../icons/IconUploadImgPerus"; // Ensure this is the correct path to your image
+import IconUploadImgPerus from "../../icons/IconUploadImgPerus";
 
 const RecruiterCreateJobs = () => {
   const [title, setTitle] = useState("");

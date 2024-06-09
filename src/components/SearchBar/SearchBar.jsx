@@ -3,7 +3,7 @@ import SearchIcon from "../../icons/SearchIcon";
 
 const SearchBar = ({ setSearchQuery }) => {
   const handleInputChange = (e) => {
-    setSearchQuery(e.target.value); // Update the search query state in the parent component
+    setSearchQuery(e.target.value);
   };
 
   return (
@@ -14,7 +14,7 @@ const SearchBar = ({ setSearchQuery }) => {
           type="text"
           placeholder="cari lowongan"
           id="search"
-          onChange={handleInputChange} // Handle input change
+          onChange={handleInputChange}
         />
       </div>
       <button className="bg-primary-blue p-3 rounded">

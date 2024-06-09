@@ -99,7 +99,7 @@ const CandidateList = () => {
               <CandidateHeader
                 img={logo}
                 name={activeCandidate.fullname}
-                percentage={activeCandidate.match_percentage} // Assuming you have this data or can calculate it
+                percentage={activeCandidate.match_percentage}
                 position={activeCandidate.title}
               />
 

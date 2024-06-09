@@ -4,9 +4,11 @@ import {
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from "react-router-dom";
+import PropTypes from "prop-types";
 import SideBar from "./components/SideBar/SideBar";
-import { EditorProvider } from "react-simple-wysiwyg"; // Import EditorProvider
+import { EditorProvider } from "react-simple-wysiwyg";
 
 const CandidateList = lazy(() => import("./pages/CandidateList"));
 const Jobs = lazy(() => import("./pages/Jobs/JobList"));
@@ -33,50 +35,68 @@ const App = () => {
 
   return (
     <Router>
-      <div className="flex md:gap-7 p-2 w-full h-screen bg-white">
-        {isLoggedIn && <SideBar setIsLoggedIn={setIsLoggedIn} />}
-        <div
-          className={`flex md:gap-7 p-2 w-full bg-white h-screen ${
-            isLoggedIn ? "" : "justify-center items-center"
-          }`}
-        >
-          <Suspense fallback={<div>Loading...</div>}>
-            <EditorProvider>
-              <Routes>
-                <Route path="/" element={<Navigate to="/login" />} />
-                <Route
-                  path="/login"
-                  element={<RecruiterLogin setIsLoggedIn={handleLogin} />}
-                />
-                <Route
-                  path="/jobs"
-                  element={isLoggedIn ? <Jobs /> : <Navigate to="/login" />}
-                />
-                <Route
-                  path="/jobs/:id"
-                  element={
-                    isLoggedIn ? <JobsDetail /> : <Navigate to="/login" />
-                  }
-                />
-                <Route
-                  path="/candidates/:jobId"
-                  element={
-                    isLoggedIn ? <CandidateList /> : <Navigate to="/login" />
-                  }
-                />
-                <Route
-                  path="/createjobs"
-                  element={
-                    isLoggedIn ? <CreateJobs /> : <Navigate to="/login" />
-                  }
-                />
-              </Routes>
-            </EditorProvider>
-          </Suspense>
-        </div>
-      </div>
+      <Main
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+        handleLogin={handleLogin}
+      />
     </Router>
   );
+};
+
+const Main = ({ isLoggedIn, setIsLoggedIn, handleLogin }) => {
+  const location = useLocation();
+
+  return (
+    <div className="flex md:gap-7 p-2 w-full h-screen bg-white">
+      {isLoggedIn && location.pathname !== "/login" && (
+        <SideBar setIsLoggedIn={setIsLoggedIn} />
+      )}
+      <div
+        className={`flex md:gap-7 p-2 w-full bg-white h-screen ${
+          isLoggedIn && location.pathname !== "/login"
+            ? ""
+            : "justify-center items-center"
+        }`}
+      >
+        <Suspense fallback={<div>Loading...</div>}>
+          <EditorProvider>
+            <Routes>
+              <Route path="/" element={<Navigate to="/login" />} />
+              <Route
+                path="/login"
+                element={<RecruiterLogin setIsLoggedIn={handleLogin} />}
+              />
+              <Route
+                path="/jobs"
+                element={isLoggedIn ? <Jobs /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/jobs/:id"
+                element={isLoggedIn ? <JobsDetail /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/candidates/:jobId"
+                element={
+                  isLoggedIn ? <CandidateList /> : <Navigate to="/login" />
+                }
+              />
+              <Route
+                path="/createjobs"
+                element={isLoggedIn ? <CreateJobs /> : <Navigate to="/login" />}
+              />
+            </Routes>
+          </EditorProvider>
+        </Suspense>
+      </div>
+    </div>
+  );
+};
+
+Main.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  setIsLoggedIn: PropTypes.func.isRequired,
+  handleLogin: PropTypes.func.isRequired,
 };
 
 export default App;
