@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import CompanyHeader from "./CompanyListHeader";
 import { getJobs } from "../../utils/api.js";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import AddIcon from "../../icons/IconAdd";
-import BackButton from "../../components/ButtonNextBack/BackButton"; // Import the BackButton component
-import NextButton from "../../components/ButtonNextBack/NextButton"; // Import the NextButton component
+import BackButton from "../../components/ButtonNextBack/BackButton";
+import NextButton from "../../components/ButtonNextBack/NextButton";
 
 const JobList = () => {
   const [jobList, setJobList] = useState([]);
@@ -14,12 +14,18 @@ const JobList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const jobsPerPage = 10;
+  const location = useLocation();
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         const response = await getJobs();
-        setJobList(response.data);
+        console.log("API Response:", response.data);
+
+        const jobs = response.data.data.jobs;
+        console.log("Jobs Data:", jobs);
+
+        setJobList(jobs);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -28,7 +34,11 @@ const JobList = () => {
     };
 
     fetchJobs();
-  }, []);
+  }, [location]);
+
+  useEffect(() => {
+    console.log("Updated jobList:", jobList);
+  }, [jobList]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -81,7 +91,7 @@ const JobList = () => {
           <div key={job.id} className="mb-4">
             <Link to={`/jobs/${job.id}`}>
               <CompanyHeader
-                imageUrl={job.Logo}
+                imageUrl={job.logo}
                 jobTitle={job.title}
                 category={job.city}
                 businessSector={job.business_sector}

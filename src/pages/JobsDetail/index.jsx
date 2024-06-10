@@ -14,7 +14,11 @@ const JobsDetail = () => {
     const fetchJob = async () => {
       try {
         const response = await getJobById(id);
-        setJob(response.data);
+        console.log("API Response:", response.data);
+        // Memastikan akses data dengan benar
+        const jobData = response.data.data.job; // Perhatikan perbedaan di sini
+        console.log("Job Data:", jobData);
+        setJob(jobData);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -40,13 +44,13 @@ const JobsDetail = () => {
   return (
     <div className="w-full space-y-4">
       <JobHeader
-        imageUrl={job.Logo}
+        imageUrl={job.logo}
         jobTitle={job.title}
         category={job.city}
         businessSector={job.business_sector}
         jobId={parseInt(id, 10)}
       />
-      <JobsDesc jobDesc={job.description} />
+      <JobsDesc jobDesc={job.desc} />
     </div>
   );
 };

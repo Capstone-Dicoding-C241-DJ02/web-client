@@ -2,6 +2,8 @@ import { useState } from "react";
 import InputText from "../../components/InputText/InputText";
 import { Editor } from "react-simple-wysiwyg";
 import IconUploadImgPerus from "../../icons/IconUploadImgPerus";
+import { useNavigate } from "react-router-dom";
+import { createJob } from "../../utils/api";
 
 const RecruiterCreateJobs = () => {
   const [title, setTitle] = useState("");
@@ -9,14 +11,32 @@ const RecruiterCreateJobs = () => {
   const [sector, setSector] = useState("");
   const [description, setDescription] = useState("");
   const [profilePhoto, setProfilePhoto] = useState(null);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !location || !sector || !description || !profilePhoto) {
       alert("Mohon isi semua field dan upload gambar.");
       return;
     }
-    alert("Lowongan berhasil ditambahkan.");
+
+    try {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("city", location);
+      formData.append("desc", description);
+      formData.append("logo", profilePhoto);
+      formData.append("business_sector", sector);
+
+      const token = localStorage.getItem("accessToken");
+      await createJob(formData, token);
+
+      alert("Lowongan berhasil ditambahkan.");
+      navigate("/jobs"); // Alihkan ke halaman /jobs
+    } catch (error) {
+      console.error("Error creating job:", error);
+      alert("Terjadi kesalahan saat menambahkan lowongan.");
+    }
   };
 
   const handleFileChange = (e) => {
