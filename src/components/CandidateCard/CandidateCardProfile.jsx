@@ -4,7 +4,7 @@ import Types from 'prop-types';
 const CandidateCardProfile = ({img, isActive, name, position}) => {
   return (
     <div className="flex gap-3 items-center">
-      <div className="rounded-full overflow-clip w-[60px]">
+      <div className="rounded-full overflow-clip w-[60px] h-[60px]">
         <img src={img} alt="candidate-photo" className="w-full object-cover" />
       </div>
       <div>

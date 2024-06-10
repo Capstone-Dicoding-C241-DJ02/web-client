@@ -1,26 +1,27 @@
-import PropTypes from "prop-types";
-import SearchIcon from "../../icons/SearchIcon";
+import PropTypes from 'prop-types';
+import SearchIcon from '../../icons/SearchIcon';
 
-const SearchBar = ({ setSearchQuery }) => {
-  const handleInputChange = (e) => {
-    setSearchQuery(e.target.value);
+const SearchBar = ({setSearchQuery}) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchQuery(e.target.search.value);
   };
 
   return (
-    <div className="flex gap-2 items-center my-2">
+    <form onSubmit={handleSubmit} className="flex gap-2 items-center my-2">
       <div className="w-full">
         <input
           className="px-3 py-2 border w-full border-black rounded"
           type="text"
+          name="search"
           placeholder="cari lowongan"
           id="search"
-          onChange={handleInputChange}
         />
       </div>
       <button className="bg-primary-blue p-3 rounded">
-        <SearchIcon className={"stroke-white w-[20px]"} />
+        <SearchIcon className={'stroke-white w-[20px]'} />
       </button>
-    </div>
+    </form>
   );
 };
 

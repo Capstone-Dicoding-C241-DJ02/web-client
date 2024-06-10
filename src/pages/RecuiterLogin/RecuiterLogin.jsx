@@ -1,27 +1,30 @@
 // RecruiterLogin.jsx
-import { useState } from "react";
-import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
-import InputText from "../../components/InputText/InputText"; // Ensure path is correct
-import logo from "../../assets/jobs.png"; // Ensure path is correct
-import { login } from "../../utils/api.js"; // Import the login function
+import {useState} from 'react';
+import PropTypes from 'prop-types';
+import {useNavigate} from 'react-router-dom';
+import InputText from '../../components/InputText/InputText'; // Ensure path is correct
+import logo from '../../assets/jobs.png'; // Ensure path is correct
+import {login} from '../../utils/api.js'; // Import the login function
+import useToken from '../../hooks/useToken.jsx';
 
-const RecruiterLogin = ({ setIsLoggedIn }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+const RecruiterLogin = ({setIsLoggedIn}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  const setToken = useToken((state) => state.setToken);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await login(email, password);
-      const { accessToken } = response.data.data;
-      localStorage.setItem("accessToken", accessToken);
+      const {accessToken} = response.data.data;
+      setToken(accessToken);
       setIsLoggedIn(true);
-      navigate("/jobs");
+      navigate('/jobs');
     } catch (error) {
-      setError("Email or password is incorrect");
+      setError('Email or password is incorrect');
     }
   };
 

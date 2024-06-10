@@ -1,28 +1,22 @@
-const TabsSummarizedCV = () => {
+import PropTypes from 'prop-types';
+
+const TabsSummarizedCV = ({candidate}) => {
   return (
-    <div className="text-black space-y-4 p-4">
-      <h5 className="text-body">[Nama Pelamar]</h5>
-      <div className="space-x-3">
-        <span>[Nomor Telepon]</span>
-        <span>[Email]</span>
+    <div className="text-black space-y-10 p-2 md:p-10">
+      <h2 className="text-center">{candidate?.fullname}</h2>
+      <div className="flex items-center justify-between mb-4">
+        <span>{candidate?.phone}</span>
+        <span>{candidate?.email}</span>
+        <span>{candidate?.additional_link}</span>
       </div>
-      <div>
-        <span>[Asal Instansi, Jenjang - Jurusan | Tahun]</span>
-      </div>
-      <div className="space-y-2">
-        <h5>Pengalaman Bekerja</h5>
-        <span className="block">[Job Title]</span>
-        <span>[Nama Perusahaan], [Lokasi] | [Tahun]</span>
-      </div>
-      <div className="space-y-2">
-        <h5>Skills</h5>
-        <span className="mr-2">Skill1,</span>
-        <span className="mr-2">Skill2,</span>
-        <span className="mr-2">Skill3</span>
-        <span className="mr-2">Skill4</span>
-      </div>
+      <h2>Summary</h2>
+      <p>{candidate?.cv_summary}</p>
     </div>
   );
+};
+
+TabsSummarizedCV.propTypes = {
+  candidate: PropTypes.object,
 };
 
 export default TabsSummarizedCV;

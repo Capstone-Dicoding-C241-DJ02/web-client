@@ -1,11 +1,6 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-const CompanyListHeader = ({
-  imageUrl,
-  jobTitle,
-  category,
-  businessSector,
-}) => {
+const CompanyListHeader = ({imageUrl, jobTitle, category, businessSector}) => {
   return (
     <div className="flex items-center p-3 bg-white shadow-primary rounded-lg w-full max-w-full px-8">
       <div className="flex-shrink-0">
@@ -16,9 +11,9 @@ const CompanyListHeader = ({
         />
       </div>
       <div className="ml-8">
-        <h2 className="text-heading2 font-medium">{jobTitle}</h2>
-        <p className="text-black">{category}</p>
-        <p className="text-black">{businessSector}</p>
+        <h2 className="text-body text-black font-medium">{jobTitle}</h2>
+        <p className="text-black text-sm">{category}</p>
+        <p className="text-black text-sm">{businessSector}</p>
       </div>
     </div>
   );
