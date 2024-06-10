@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const CompanyHeader = ({imageUrl, jobTitle, salary, category}) => {
+const CompanyHeader = ({ imageUrl, jobTitle, city, category }) => {
   return (
     <div className="flex items-center p-4 bg-white shadow-primary rounded w-full max-w-full px-4">
       <div className="flex-shrink-0">
@@ -12,8 +12,8 @@ const CompanyHeader = ({imageUrl, jobTitle, salary, category}) => {
       </div>
       <div className="ml-4">
         <h2 className="text-heading2 font-medium">{jobTitle}</h2>
-        <p className="text-black text-[.8rem]">Gaji Rp. {salary}</p>
-        <p className="text-black text-[.8rem]">Sektor Bisnis: {category}</p>
+        <p className="text-black text-[.8rem]">{city}</p>
+        <p className="text-black text-[.8rem]">{category}</p>
       </div>
     </div>
   );
@@ -22,7 +22,7 @@ const CompanyHeader = ({imageUrl, jobTitle, salary, category}) => {
 CompanyHeader.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   jobTitle: PropTypes.string.isRequired,
-  salary: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
 };
 
