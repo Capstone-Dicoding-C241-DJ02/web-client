@@ -1,30 +1,37 @@
 // RecruiterLogin.jsx
 import {useState} from 'react';
-import PropTypes from 'prop-types';
-import {useNavigate} from 'react-router-dom';
+
+import {useLocation, useNavigate} from 'react-router-dom';
 import InputText from '../../components/InputText/InputText'; // Ensure path is correct
 import logo from '../../assets/jobs.png'; // Ensure path is correct
-import {login} from '../../utils/api.js'; // Import the login function
 import useToken from '../../hooks/useToken.jsx';
+import useAuth from '../../hooks/useAuth.jsx';
+import api from '../../utils/api.js';
 
-const RecruiterLogin = ({setIsLoggedIn}) => {
+const RecruiterLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/jobs';
+  const setIsLoggedIn = useAuth((state) => state.setIsLoggedIn);
   const setToken = useToken((state) => state.setToken);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await login(email, password);
+      setIsLoading(true);
+      const response = await api().post('/auth/login', {email, password});
       const {accessToken} = response.data.data;
       setToken(accessToken);
       setIsLoggedIn(true);
-      navigate('/jobs');
+      navigate(from, {replace: true});
     } catch (error) {
       setError('Email or password is incorrect');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -68,17 +75,14 @@ const RecruiterLogin = ({setIsLoggedIn}) => {
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <button
           type="submit"
-          className="w-full max-w-[861px] mt-4 bg-primary-blue text-white py-2 rounded"
+          disabled={isLoading}
+          className="w-full max-w-[861px] mt-4 bg-primary-blue text-white py-2 rounded disabled:opacity-[.7] disabled:cursor-not-allowed"
         >
           Masuk
         </button>
       </form>
     </div>
   );
-};
-
-RecruiterLogin.propTypes = {
-  setIsLoggedIn: PropTypes.func.isRequired,
 };
 
 export default RecruiterLogin;

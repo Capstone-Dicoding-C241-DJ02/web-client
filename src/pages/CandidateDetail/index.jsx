@@ -1,7 +1,7 @@
 import CandidateHeader from '../../components/CandidateHeader';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Tabs from '../../components/Tabs';
-import {useParams} from 'react-router-dom';
+import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import CvButtons from '../../components/CvButtons/CvButtons';
 
@@ -10,22 +10,30 @@ const CandidateDetail = () => {
   const axiosPrivate = useAxiosPrivate();
   const [candidate, setCandidate] = useState({});
   const [tab, setTab] = useState('summarized');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const controller = new AbortController();
 
     const getCandidateDetail = async () => {
-      const {data} = await axiosPrivate.get(`/candidates/${candidateId}`, {
-        signal: controller.signal,
-      });
-      setCandidate(data.data.candidate);
+      try {
+        const {data} = await axiosPrivate.get(`/candidates/${candidateId}`, {
+          signal: controller.signal,
+        });
+        setCandidate(data.data.candidate);
+      } catch (err) {
+        if (err.response.status === 403) {
+          navigate('/login', {state: {from: location}, replace: true});
+        }
+      }
     };
 
     getCandidateDetail();
     return () => {
       controller.abort();
     };
-  }, [candidateId, axiosPrivate]);
+  }, [candidateId, axiosPrivate, navigate, location]);
 
   return (
     <div className="flex flex-col gap-5 w-full">

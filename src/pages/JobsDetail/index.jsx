@@ -2,8 +2,7 @@ import {useParams} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import JobHeader from './JobHeader';
 import parse from 'html-react-parser';
-
-import {getJobById} from '../../utils/api.js';
+import api from '../../utils/api';
 
 const JobsDetail = () => {
   const {id} = useParams();
@@ -11,11 +10,9 @@ const JobsDetail = () => {
 
   useEffect(() => {
     const fetchJob = async () => {
-      const response = await getJobById(id);
-      console.log('API Response:', response.data);
-      // Memastikan akses data dengan benar
-      const jobData = response.data.data.job; // Perhatikan perbedaan di sini
-      console.log('Job Data:', jobData);
+      const response = await api().get(`/jobs/${id}`);
+
+      const jobData = response.data.data.job;
       setJob(jobData);
     };
 
@@ -23,7 +20,7 @@ const JobsDetail = () => {
   }, [id]);
 
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full h-full space-y-4">
       <JobHeader
         imageUrl={job?.logo}
         jobTitle={job?.title}

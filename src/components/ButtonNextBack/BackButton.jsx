@@ -1,13 +1,10 @@
-import PropTypes from "prop-types"; // Import prop-types
+import PropTypes from 'prop-types'; // Import prop-types
 
-const BackButton = ({ onClick, disabled }) => {
+const BackButton = ({onClick}) => {
   return (
     <button
       onClick={onClick}
-      disabled={disabled}
-      className={`mx-2 shadow-primary rounded py-2 px-4 ${
-        disabled ? "bg-white" : "bg-primary-blue text-white"
-      }`}
+      className={'mx-2 shadow-primary rounded py-2 px-4'}
     >
       &lt; Back
     </button>
@@ -17,7 +14,6 @@ const BackButton = ({ onClick, disabled }) => {
 // Prop types validation
 BackButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
 };
 
 export default BackButton;

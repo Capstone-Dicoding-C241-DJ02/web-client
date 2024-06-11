@@ -1,14 +1,17 @@
 import {useState, useEffect} from 'react';
-import PropTypes from 'prop-types'; // Import PropTypes
+
 import {Link, useNavigate} from 'react-router-dom'; // Import useNavigate
 import jobsImage from '../../assets/jobs.png';
 import Chevron from '../../icons/IconChevron';
 import clsx from 'clsx';
+import useToken from '../../hooks/useToken';
+import api from '../../utils/api';
 
-const SideBar = ({setIsLoggedIn}) => {
+const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const setToken = useToken((state) => state.setToken);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -24,9 +27,10 @@ const SideBar = ({setIsLoggedIn}) => {
     }
   };
 
-  const handleLogout = () => {
-    setIsLoggedIn(false); // Set isLoggedIn to false
-    navigate('/login'); // Redirect to login page
+  const handleLogout = async () => {
+    await api().get('/auth/logout');
+    setToken('');
+    navigate('/login', {replace: true});
   };
 
   // Update isMobile state on window resize
@@ -97,10 +101,6 @@ const SideBar = ({setIsLoggedIn}) => {
       )}
     </div>
   );
-};
-
-SideBar.propTypes = {
-  setIsLoggedIn: PropTypes.func.isRequired,
 };
 
 export default SideBar;
