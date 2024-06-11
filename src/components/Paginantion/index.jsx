@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import BackButton from '../ButtonNextBack/BackButton';
 import NextButton from '../ButtonNextBack/NextButton';
 import PropTypes from 'prop-types';
@@ -6,6 +6,10 @@ import PropTypes from 'prop-types';
 const Pagination = ({onPageChange, totalData}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const pages = Math.ceil(totalData / 10);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [totalData]);
 
   const handleNext = () => {
     setCurrentPage((prev) => {

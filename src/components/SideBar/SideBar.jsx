@@ -71,7 +71,7 @@ const SideBar = () => {
           </div>
           <button
             onClick={handleLogout}
-            className="bg-red-500 text-white p-2 rounded mt-4"
+            className="bg-danger text-white p-2 rounded mt-4"
           >
             Logout
           </button>

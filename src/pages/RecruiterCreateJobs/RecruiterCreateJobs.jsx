@@ -79,7 +79,7 @@ const RecruiterCreateJobs = () => {
             />
             <label
               htmlFor="profile-photo"
-              className="block overflow-clip border-2 border-dashed w-full h-[171px] border-gray-300  p-1 rounded cursor-pointer text-center"
+              className="overflow-clip border-2 border-dashed w-full h-[171px] border-gray-300 grid place-content-center placep-1 rounded cursor-pointer text-center"
             >
               {profilePhoto ? (
                 <img

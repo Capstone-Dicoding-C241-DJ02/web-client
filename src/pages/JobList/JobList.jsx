@@ -43,7 +43,7 @@ const JobList = () => {
     );
 
   return (
-    <div className="p-4 w-full h-full shadow-primary bg-white">
+    <div className="p-4 w-full rounded h-full shadow-primary bg-white">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl mb-2 flex items-center">
           Daftar Lowongan
@@ -55,19 +55,25 @@ const JobList = () => {
         </h1>
       </div>
       <SearchBar setSearchQuery={handleSearch} />
-      <div className="max-h-[450px] overflow-y-auto pr-4">
-        {jobList.map((job) => (
-          <div key={job.id} className="mb-4">
-            <Link to={`/jobs/${job.id}`}>
-              <CompanyHeader
-                imageUrl={job.logo}
-                jobTitle={job.title}
-                category={job.city}
-                businessSector={job.business_sector}
-              />
-            </Link>
+      <div className="h-[450px] overflow-y-auto pr-4">
+        {jobList.length ? (
+          jobList.map((job) => (
+            <div key={job.id} className="mb-4">
+              <Link to={`/jobs/${job.id}`}>
+                <CompanyHeader
+                  imageUrl={job.logo}
+                  jobTitle={job.title}
+                  category={job.city}
+                  businessSector={job.business_sector}
+                />
+              </Link>
+            </div>
+          ))
+        ) : (
+          <div className="text-black grid place-content-center h-full">
+            Tidak ada lowongan
           </div>
-        ))}
+        )}
       </div>
       <Pagination onPageChange={handlePageChange} totalData={totalData} />
     </div>
