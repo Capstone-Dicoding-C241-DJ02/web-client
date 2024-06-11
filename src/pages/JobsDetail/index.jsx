@@ -28,7 +28,7 @@ const JobsDetail = () => {
         businessSector={job?.business_sector}
         jobId={parseInt(id, 10)}
       />
-      <div className="p-4 bg-white shadow-primary rounded max-h-[530px] overflow-y-auto">
+      <div className="p-4 bg-white shadow-primary rounded h-[530px] overflow-y-auto">
         {parse(job?.desc ? job.desc : '')}
       </div>
     </div>
