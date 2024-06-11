@@ -36,7 +36,7 @@ const CandidateDetail = () => {
   }, [candidateId, axiosPrivate, navigate, location]);
 
   return (
-    <div className="flex flex-col gap-5 w-full">
+    <div className="flex flex-col gap-5 w-full md:max-h-[550px] overflow-y-auto">
       <CandidateHeader
         img={candidate?.passphoto}
         name={candidate?.fullname}

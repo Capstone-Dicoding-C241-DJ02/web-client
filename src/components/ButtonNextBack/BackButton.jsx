@@ -4,7 +4,9 @@ const BackButton = ({onClick}) => {
   return (
     <button
       onClick={onClick}
-      className={'mx-2 shadow-primary rounded py-2 px-4'}
+      className={
+        'mx-2 shadow-primary text-black hover:text-white hover:bg-primary-blue bg-white rounded py-2 px-4'
+      }
     >
       &lt; Back
     </button>

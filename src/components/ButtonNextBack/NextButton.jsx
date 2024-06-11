@@ -5,7 +5,7 @@ const NextButton = ({onClick}) => {
     <button
       onClick={onClick}
       className={
-        'mx-2 shadow-primary bg-primary-blue text-white rounded py-2 px-4'
+        'mx-2 shadow-primary text-black hover:bg-primary-blue bg-white hover:text-white rounded py-2 px-4'
       }
     >
       Next &gt;

@@ -5,7 +5,7 @@ import Types from 'prop-types';
 
 const Tabs = ({tab = 'summarized', originalCv, candidate}) => {
   return (
-    <div className="rounded bg-white shadow-primary w-full h-[600px] md:h-full p-2 ">
+    <div className="rounded bg-white shadow-primary w-full min-h-[600px] p-2">
       {tab === 'original' ? (
         <TabsOriginalCV cv={originalCv} />
       ) : (
