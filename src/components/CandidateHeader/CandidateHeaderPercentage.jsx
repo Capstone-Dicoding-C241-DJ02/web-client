@@ -4,8 +4,8 @@ import Types from 'prop-types';
 const CandidateHeaderPercentage = ({percentage}) => {
   const options = {
     'bg-success': percentage >= 80,
-    'bg-gold': percentage >= 50,
-    'bg-danger': percentage <= 40,
+    'bg-gold': percentage > 50,
+    'bg-danger': percentage < 50,
   };
 
   return (

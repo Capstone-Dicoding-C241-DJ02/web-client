@@ -30,7 +30,7 @@ const JobList = () => {
   }, [queryParams]);
 
   const handleSearch = (search) => {
-    setQueryParams((prev) => ({...prev, search}));
+    setQueryParams(() => ({page: 1, search}));
   };
 
   const handlePageChange = (page) => {

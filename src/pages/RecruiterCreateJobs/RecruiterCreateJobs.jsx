@@ -13,6 +13,7 @@ const RecruiterCreateJobs = () => {
   const [description, setDescription] = useState('');
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
   const location = useLocation();
@@ -29,6 +30,7 @@ const RecruiterCreateJobs = () => {
     }
 
     try {
+      setIsLoading(true)
       const formData = new FormData();
       formData.append('title', title);
       formData.append('city', city);
@@ -53,6 +55,8 @@ const RecruiterCreateJobs = () => {
         className: 'border border-danger text-danger',
         style: {background: 'rgb(254, 202, 202)'},
       });
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -142,7 +146,8 @@ const RecruiterCreateJobs = () => {
         <div className="flex justify-end mt-4">
           <button
             type="submit"
-            className="px-4 py-2 bg-primary-blue text-white rounded"
+            disabled={isLoading}
+            className="px-4 py-2 bg-primary-blue text-white rounded disabled:opacity-[0.7] disabled:cursor-not-allowed"
           >
             Tambah Lowongan
           </button>

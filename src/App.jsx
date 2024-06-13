@@ -34,7 +34,7 @@ const Main = () => {
   return (
     <Suspense
       fallback={
-        <div className="grid place-content-center w-full h-full">Memuat...</div>
+        <div className="grid place-content-center w-full h-screen">Memuat...</div>
       }
     >
       <Routes>
